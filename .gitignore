@@ -1,0 +1,15 @@
+rtvEnv
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.sqlite3
+
+# Ignore migrations except __init__.py
+*/migrations/
+!*/migrations/__init__.py

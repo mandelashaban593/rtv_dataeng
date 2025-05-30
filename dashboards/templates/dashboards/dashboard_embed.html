@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load plotly_dash %}
+
+{% block title %}Poverty Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">📊 Poverty Analytics Dashboard</h2>
+
+    <!-- Survey Summary Table -->
+    <div class="card p-3 mb-4 shadow-sm">
+        <h4>Survey Summary</h4>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Survey Year</th>
+                    <th>Average Income</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in metrics %}
+                <tr>
+                    <td>{{ row.survey_year }}</td>
+                    <td>{{ row.income|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Dash app embedded -->
+    <div class="card p-3 shadow-sm">
+        {% plotly_app name="poverty_dashboard" %}
+    </div>
+</div>
+{% endblock %}
