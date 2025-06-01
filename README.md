@@ -1,7 +1,4 @@
-
-# rtv_dataeng
-
-A Django-based data dashboard and survey analytics application.
+A Django-based data dashboard and survey analytics application for visualizing household survey data such as poverty and income metrics.
 
 ## Table of Contents
 
@@ -19,214 +16,145 @@ A Django-based data dashboard and survey analytics application.
 - [Contributing](#contributing)
 - [License](#license)
 
----
+Project Overview
+This project offers a web-based dashboard to analyze survey datasets. It reads and cleans CSV files, stores the information in a PostgreSQL database, and presents analytical insights via interactive Plotly Dash dashboards embedded within Django views.
 
-## Project Overview
+Features
+Load and clean structured CSV survey files
 
-This project provides a web dashboard to analyze survey data, particularly poverty and income metrics. It processes CSV data, persists it to a database, and visualizes analytics using Plotly Dash embedded in Django templates.
+Store household and survey data in a PostgreSQL (or supported) database
 
----
+Generate summary statistics and visualizations
 
-## Features
+Embed Plotly Dash apps within Django templates
 
-- Load and clean CSV survey data
-- Store survey and household info in a PostgreSQL database (or other supported DB)
-- Generate summary statistics and visualizations
-- Embed interactive Plotly Dash dashboards in Django views
-- Responsive web UI with Bootstrap or custom CSS (adjust as needed)
+Responsive UI using Bootstrap or custom CSS
 
----
-
-## Folder Structure
+Folder Structure
 
 rtv_dataeng/
 │
-├── core/ # Django app for models and business logic
-│ ├── migrations/
-│ ├── models.py
-│ ├── views.py
-│ └── ...
-├── dashboards/ # Dashboard app with views and templates
-│ ├── templates/dashboards/
-│ │ ├── dashboard_embed.html
-│ ├── views.py
-│ └── ...
-├── combined_data/ # CSV data files (01_baseline.csv, etc.)
-├── rtv_dataeng/ # Django project config folder
-│ ├── settings.py
-│ ├── urls.py
-│ └── ...
-├── manage.py # Django management script
-├── requirements.txt # Python dependencies
-└── README.md # This file
+├── core/                  # Main Django app: models, views, logic
+│   ├── migrations/
+│   ├── models.py
+│   ├── views.py
+│   └── ...
+│
+├── dashboards/            # Dashboard-related views and templates
+│   ├── templates/dashboards/
+│   │   └── dashboard_embed.html
+│   └── views.py
+│
+├── combined_data/         # Directory for CSV data files
+│   └── (e.g., 01_baseline.csv, 02_year_one.csv)
+│
+├── backend/           # Django project config
+│   ├── settings.py
+│   ├── urls.py
+│   └── ...
+│
+├── manage.py              # Django management script
+├── requirements.txt       # Python dependencies
+└── README.md              # Project documentation
 
-yaml
-Copy
-Edit
+Requirements
+Python 3.8+
 
----
+Django 4.x
 
-## Requirements
+pandas
 
-- Python 3.8+
-- Django 4.x
-- pandas
-- plotly
-- django-plotly-dash (if using Dash integration)
-- PostgreSQL (recommended) or any Django-supported DB
+plotly
 
----
+django-plotly-dash
 
-## Installation
+PostgreSQL (recommended) or other supported database
 
-1. Clone this repo:
+Installation
+Clone the repository:
 
-   ```bash
-   git clone git@github.com:mandelashaban593/rtv_dataeng.git
-   cd rtv_dataeng
-Create a virtual environment and activate it:
+git clone git@github.com:mandelashaban593/rtv_dataeng.git
+cd rtv_dataeng
+Set up a virtual environment:
 
-bash
-Copy
-Edit
 python -m venv venv
-source venv/bin/activate    # On Windows: venv\Scripts\activate
-Install Python dependencies:
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+Install dependencies:
 
-bash
-Copy
-Edit
 pip install -r requirements.txt
-Configure your database in rtv_dataeng/settings.py.
+Configure your database:
 
-Apply migrations:
+Edit rtv_dataeng/settings.py with your DB credentials.
 
-bash
-Copy
-Edit
+Apply database migrations:
+
 python manage.py migrate
-(Optional) Create a superuser for admin access:
+Create a superuser:
 
-bash
-Copy
-Edit
 python manage.py createsuperuser
 Configuration
 Place your CSV survey files in the combined_data/ directory:
 
 01_baseline.csv
-
 02_year_one.csv
-
 03_year_two.csv
-
-Update database credentials and other settings in settings.py.
+Update any custom settings, paths, or credentials in settings.py.
 
 Running the Project
-Start the Django development server:
+Start the development server:
 
-bash
-Copy
-Edit
 python manage.py runserver
-Open your browser and visit: http://127.0.0.1:8000/dashboard/
+Visit: http://127.0.0.1:8000/dashboard/
 
 Loading Data
-The dashboard view automatically loads and processes CSV files on each request, persisting the cleaned data into the database.
+The dashboard view automatically detects and processes CSV files on each request but you must first login to access it.
 
-If you want to manually load data or automate it, consider creating a management command.
+Cleaned data is persisted to the database.
+
+For automation or better control, consider writing a Django management command.
 
 Usage
-View survey summary tables
+View summary tables and insights from survey data.
 
-Interact with embedded Plotly Dash dashboards
+Interact with embedded Plotly Dash visualizations.
 
-Extend with your own charts or data filters in Django views or Dash apps
+Extend the project with new charts, filters, or advanced analytics.
 
 Testing
-Add your tests under the tests/ directory or inside each app.
+Write your tests in a tests/ directory or inside respective Django apps.
 
 Run tests with:
 
-bash
-Copy
-Edit
 python manage.py test
 Deployment
-Configure allowed hosts and debug flags in settings.py.
+Set DEBUG = False and configure ALLOWED_HOSTS in settings.py.
 
-Use production-ready web servers like Gunicorn or uWSGI.
+Use production servers like Gunicorn or uWSGI.
 
-Serve static files with WhiteNoise or through a CDN.
+Serve static files with WhiteNoise or via CDN.
 
-Secure your database credentials.
+Protect sensitive credentials (e.g., use environment variables).
 
-Consider containerizing with Docker for consistency.
+Consider Docker for containerized deployment.
 
 Contributing
 Fork this repository.
 
-Create your feature branch (git checkout -b feature-name).
+Create your feature branch:
 
-Commit your changes (git commit -m 'Add some feature').
+git checkout -b feature-name
+Commit your changes:
 
-Push to the branch (git push origin feature-name).
+git commit -m "Add some feature"
+Push to the branch:
 
+git push origin feature-name
 Open a Pull Request.
 
-License
 This project is licensed under the MIT License.
 
 Made with ❤️ by Mandela Shaban
-
-yaml
-Copy
-Edit
-
----
-
-If you want, I can also help you generate the exact `requirements.txt` or add more detailed setup inst
-
-
-PROJECT STRUCTURE
-
-rtv_data_engineer_assessment/
-├── combined_data/               # Provided CSV and HTML data
-│
-├── etl/
-│   ├── transformations.py       # Cleaning & normalization functions
-│   └── schema_mapping.json      # Tracks variable evolution
-│
-├── rtv_project/
-│   ├── manage.py
-│   ├── settings.py
-│   ├── urls.py                  # Routes including dash apps
-│   ├── models.py                # Household, Survey models
-│   │
-│   ├── ingestion/
-│   │   └── import_data.py       # Custom ETL logic
-│   │
-│   ├── analysis/
-│   │   └── metrics.py           # Derived metrics & KPIs
-│   │
-│   ├── dashboards/
-│   │   ├── dash_apps.py         # Dash app definitions
-│   │   └── templates/
-│   │       └── dashboards/
-│   │           └── dashboard_embed.html   # Template for embedded Dash
-│   │
-│   ├── templates/
-│   │   └── home.html            # Simple homepage or login
-│   │
-│   └── static/                  # JS/CSS for custom styling
-│
-├── tests/
-│   └── test_transformations.py  # Unit tests
-│
-├── requirements.txt
-├── README.md
-└── docs/
-    ├── architecture_diagram.png
-    ├── data_model.md
-    └── dashboard_guide.md
-# rtv_dataeng
+Email: mandelashaban593@gmail.com
+Phone: +256763281654
+Twitter: mandelashaban51
+Instagram:edoctorug1
