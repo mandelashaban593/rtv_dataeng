@@ -82,7 +82,11 @@ cd rtv_dataeng
 Set up a virtual environment:
 
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+source venv/bin/activate 
+
+ # On Windows: venv\Scripts\activate
+
 Install dependencies:
 
 pip install -r requirements.txt
@@ -100,8 +104,11 @@ Configuration
 Place your CSV survey files in the combined_data/ directory:
 
 01_baseline.csv
+
 02_year_one.csv
+
 03_year_two.csv
+
 Update any custom settings, paths, or credentials in settings.py.
 
 Running the Project
