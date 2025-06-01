@@ -3,6 +3,8 @@ import pandas as pd
 from django.conf import settings
 from django.shortcuts import render
 from core.models import Household, Survey
+from django.contrib.auth.decorators import login_required
+
 
 # Define CSV paths
 BASELINE_CSV = os.path.join(settings.BASE_DIR, 'combined_data', '01_baseline.csv')
@@ -92,6 +94,7 @@ def persist_to_database(df):
         )
 
 
+@login_required
 def dashboard_view(request):
     # Load and process CSVs
     df_all = load_and_process_csvs()
