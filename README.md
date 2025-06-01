@@ -32,6 +32,7 @@ Responsive UI using Bootstrap or custom CSS
 
 ## Folder Structure
 
+```plaintext
 rtv_dataeng/
 │
 ├── core/                  # Main Django app: models, views, logic
@@ -48,7 +49,7 @@ rtv_dataeng/
 ├── combined_data/         # Directory for CSV data files
 │   └── (e.g., 01_baseline.csv, 02_year_one.csv)
 │
-├── backend/           # Django project config
+├── backend/               # Django project config
 │   ├── settings.py
 │   ├── urls.py
 │   └── ...
@@ -56,6 +57,7 @@ rtv_dataeng/
 ├── manage.py              # Django management script
 ├── requirements.txt       # Python dependencies
 └── README.md              # Project documentation
+```
 
 ## Requirements
 Python 3.8+
