@@ -10,22 +10,26 @@
     <!-- Survey Summary Table -->
     <div class="card p-3 mb-4 shadow-sm">
         <h4>Survey Summary</h4>
+        {% if metrics %}
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>Survey Year</th>
-                    <th>Average Income</th>
+                    <th>Average Income (USD PPP)</th>
                 </tr>
             </thead>
             <tbody>
                 {% for row in metrics %}
                 <tr>
                     <td>{{ row.survey_year }}</td>
-                    <td>{{ row.income|floatformat:2 }}</td>
+                    <td>{{ row.average_income|floatformat:2 }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% else %}
+        <p class="text-danger">No survey data available.</p>
+        {% endif %}
     </div>
 
     <!-- Dash app embedded -->
