@@ -16,10 +16,10 @@ A Django-based data dashboard and survey analytics application for visualizing h
 - [Contributing](#contributing)
 - [License](#license)
 
-Project Overview
+## Project Overview
 This project offers a web-based dashboard to analyze survey datasets. It reads and cleans CSV files, stores the information in a PostgreSQL database, and presents analytical insights via interactive Plotly Dash dashboards embedded within Django views.
 
-Features
+## Features
 Load and clean structured CSV survey files
 
 Store household and survey data in a PostgreSQL (or supported) database
@@ -30,7 +30,7 @@ Embed Plotly Dash apps within Django templates
 
 Responsive UI using Bootstrap or custom CSS
 
-Folder Structure
+## Folder Structure
 
 rtv_dataeng/
 │
@@ -57,7 +57,7 @@ rtv_dataeng/
 ├── requirements.txt       # Python dependencies
 └── README.md              # Project documentation
 
-Requirements
+## Requirements
 Python 3.8+
 
 Django 4.x
@@ -70,7 +70,7 @@ django-plotly-dash
 
 PostgreSQL (recommended) or other supported database
 
-Installation
+## Installation
 Clone the repository:
 
 git clone git@github.com:mandelashaban593/rtv_dataeng.git
@@ -92,7 +92,9 @@ python manage.py migrate
 Create a superuser:
 
 python manage.py createsuperuser
-Configuration
+
+## Configuration
+
 Place your CSV survey files in the combined_data/ directory:
 
 01_baseline.csv
@@ -106,27 +108,28 @@ Start the development server:
 python manage.py runserver
 Visit: http://127.0.0.1:8000/dashboard/
 
-Loading Data
+## Loading Data
 The dashboard view automatically detects and processes CSV files on each request but you must first login to access it.
 
 Cleaned data is persisted to the database.
 
 For automation or better control, consider writing a Django management command.
 
-Usage
+## Usage
 View summary tables and insights from survey data.
 
 Interact with embedded Plotly Dash visualizations.
 
 Extend the project with new charts, filters, or advanced analytics.
 
-Testing
+## Testing
 Write your tests in a tests/ directory or inside respective Django apps.
 
 Run tests with:
 
 python manage.py test
-Deployment
+
+## Deployment
 Set DEBUG = False and configure ALLOWED_HOSTS in settings.py.
 
 Use production servers like Gunicorn or uWSGI.
@@ -137,7 +140,7 @@ Protect sensitive credentials (e.g., use environment variables).
 
 Consider Docker for containerized deployment.
 
-Contributing
+## Contributing
 Fork this repository.
 
 Create your feature branch:
@@ -151,6 +154,7 @@ Push to the branch:
 git push origin feature-name
 Open a Pull Request.
 
+## License
 This project is licensed under the MIT License.
 
 Made with ❤️ by Mandela Shaban
