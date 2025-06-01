@@ -1,49 +1,71 @@
-Dashboard Guide
-Overview
-This guide explains how to use, customize, and extend the interactive dashboard integrated into the Django application using django-plotly-dash. The dashboard provides visual insights into poverty metrics and related data analytics based on household surveys.
+# Dashboard Guide
 
-Contents
-    Accessing the Dashboard
+This guide explains how to use, customize, and extend the interactive dashboard integrated into the Django application using `django-plotly-dash`. The dashboard provides visual insights into poverty metrics and related analytics based on household survey data.
 
-    Dashboard Features
+---
 
-    Extending Dash Apps
+## Table of Contents
 
-    Embedding Dashboards
+- [Accessing the Dashboard](#accessing-the-dashboard)
+- [Dashboard Features](#dashboard-features)
+- [Extending Dash Apps](#extending-dash-apps)
+- [Embedding Dashboards in Django Templates](#embedding-dashboards-in-django-templates)
+- [Authentication & Permissions](#authentication--permissions)
+- [Troubleshooting](#troubleshooting)
+- [Additional Resources](#additional-resources)
 
-    Authentication & Permissions
+---
 
-    Troubleshooting
+## Accessing the Dashboard
 
-Accessing the Dashboard
-Start the Django development server:
+1. Start the Django development server:
 
-python manage.py runserver
-Open your browser and navigate to:
+   ```bash
+   python manage.py runserver
 
-http://localhost:8000/dashboard/
-Login using your credentials (if authentication is enabled).
-Upon login, you will be redirected to the dashboard page.
+Log in with your credentials (if authentication is enabled).
 
-Dashboard Features
-Interactive Graphs:
-Visualize poverty metrics such as income distribution, education levels, access to utilities, etc.
-Charts are created using Plotly and embedded into Django templates.
+Upon successful login, you will be redirected to the dashboard page.
 
-Filtering & Controls:
-Users can filter data by region, survey year, household size, and other variables to dynamically update charts.
+## Dashboard Features
+Interactive Graphs
 
-Real-time Updates:
-Dashboard components respond to user inputs without reloading the page.
+Visualize key poverty metrics such as:
 
-Responsive Layout:
-Works well on different screen sizes, including tablets and desktops.
+Income distribution
 
-Extending Dash Apps
-All Dash applications are defined in rtv_project/dashboards/dash_apps.py.
+Education levels
 
+Access to utilities
+
+Charts are built with Plotly and embedded within Django templates.
+
+Filtering & Controls
+Users can filter the dashboard data by:
+
+Region
+
+Survey year
+
+Household size
+
+Other relevant dimensions
+
+Charts update dynamically based on filter selection.
+
+Real-Time Updates
+The dashboard responds to user inputs without reloading the page.
+
+Responsive Layout
+Designed to work well across screen sizes (desktop, tablet, etc.).
+
+## Extending Dash Apps
+All Dash applications are defined inside:
+
+
+rtv_project/dashboards/dash_apps.py
 Adding a New Dash App
-Define a new Dash app instance inside dash_apps.py:
+Define a new app in dash_apps.py:
 
 from django_plotly_dash import DjangoDash
 import dash_core_components as dcc
@@ -52,19 +74,24 @@ import dash_html_components as html
 new_dash_app = DjangoDash('NewDashApp')
 
 new_dash_app.layout = html.Div([
-    dcc.Graph(id='new-graph', figure={
-        'data': [{'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar'}],
-        'layout': {'title': 'Sample Bar Chart'}
-    })
+    dcc.Graph(
+        id='new-graph',
+        figure={
+            'data': [{'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar'}],
+            'layout': {'title': 'Sample Bar Chart'}
+        }
+    )
 ])
-Include the Dash app route in your Django urls.py via django_plotly_dash.urls.
+Include the Dash app's route in urls.py using:
 
-Update or create Django templates to embed this new app.
+path('django_plotly_dash/', include('django_plotly_dash.urls')),
+Update or create a Django template to embed the app.
 
-Embedding Dashboards in Django Templates
-Dashboards are embedded in Django templates using the {% plotly_app %} template tag.
+## Embedding Dashboards in Django Templates
+Dash apps are embedded using the {% plotly_app %} template tag.
 
-Example (located in rtv_project/dashboards/templates/dashboards/dashboard_embed.html):
+Example (rtv_project/dashboards/templates/dashboards/dashboard_embed.html):
+
 {% load plotly_dash %}
 <!DOCTYPE html>
 <html>
@@ -76,13 +103,12 @@ Example (located in rtv_project/dashboards/templates/dashboards/dashboard_embed.
     {% plotly_app name="PovertyDashboard" %}
 </body>
 </html>
-Render this template via a Django view to display the dashboard in your website.
+Render this template using a Django view to display the embedded dashboard.
 
-Authentication & Permissions
-You can protect the dashboard route with Django’s built-in authentication decorators.
+## Authentication & Permissions
+You can restrict access using Django’s authentication decorators.
 
 Example in dashboards/views.py:
-
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
@@ -90,23 +116,35 @@ from django.shortcuts import render
 @login_required
 def dashboard_view(request):
     return render(request, 'dashboards/dashboard_embed.html')
-Ensure users must log in before accessing the dashboard.
+This ensures only authenticated users can access the dashboard.
 
 Troubleshooting
 ModuleNotFoundError: No module named 'dpd_static_support'
-Make sure you have installed django-plotly-dash and included 'dpd_static_support' in INSTALLED_APPS.
+Ensure you have installed django-plotly-dash.
 
-Static files not loading
-Run python manage.py collectstatic and verify your static files configuration.
+Include 'dpd_static_support' in INSTALLED_APPS.
 
-Dash callbacks not updating
-Ensure your Dash app callbacks are properly defined and no exceptions are raised during execution.
+Static Files Not Loading
+Run:
 
-Additional Resources
-django-plotly-dash Documentation
+python manage.py collectstatic
+Ensure STATIC_URL, STATICFILES_DIRS, and STATIC_ROOT are correctly configured in settings.py.
 
-Plotly Dash Documentation
+Dash Callbacks Not Updating
+Check that:
 
-Django Official Documentation
+All callbacks are correctly defined.
+
+No runtime exceptions occur during execution.
+
+Input/output IDs match the layout elements.
+
+## Additional Resources
+📘 Django Plotly Dash Documentation
+
+📊 Plotly Dash Official Documentation
+
+🔧 Django Official Documentation
 
 End of Dashboard Guide
+Crafted with 💡 by Mandela Shaban
