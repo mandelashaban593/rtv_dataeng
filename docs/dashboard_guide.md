@@ -67,12 +67,7 @@ rtv_project/dashboards/dash_apps.py
 Adding a New Dash App
 Define a new app in dash_apps.py:
 
-from django_plotly_dash import DjangoDash
-import dash_core_components as dcc
-import dash_html_components as html
-
-new_dash_app = DjangoDash('NewDashApp')
-
+```python
 new_dash_app.layout = html.Div([
     dcc.Graph(
         id='new-graph',
@@ -82,6 +77,9 @@ new_dash_app.layout = html.Div([
         }
     )
 ])
+```
+
+
 Include the Dash app's route in urls.py using:
 
 path('django_plotly_dash/', include('django_plotly_dash.urls')),
@@ -92,6 +90,7 @@ Dash apps are embedded using the {% plotly_app %} template tag.
 
 Example (rtv_project/dashboards/templates/dashboards/dashboard_embed.html):
 
+```html
 {% load plotly_dash %}
 <!DOCTYPE html>
 <html>
@@ -103,6 +102,8 @@ Example (rtv_project/dashboards/templates/dashboards/dashboard_embed.html):
     {% plotly_app name="PovertyDashboard" %}
 </body>
 </html>
+```
+
 Render this template using a Django view to display the embedded dashboard.
 
 ## Authentication & Permissions
