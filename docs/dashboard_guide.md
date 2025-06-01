@@ -147,5 +147,13 @@ Input/output IDs match the layout elements.
 
 🔧 Django Official Documentation
 
-End of Dashboard Guide
+## End of Dashboard Guide
 Crafted with 💡 by Mandela Shaban
+
+Email: mandelashaban593@gmail.com
+
+Phone: +256763281654
+
+Twitter: mandelashaban51
+
+Instagram:edoctorug1
